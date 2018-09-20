@@ -1,19 +1,17 @@
 package com.sandy.mymovies.models.domain;
 
-import com.sandy.mymovies.models.dto.Cast;
-import javax.persistence.Entity;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.io.Serializable;
-import lombok.Data;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import lombok.AllArgsConstructor;
-import com.sandy.mymovies.models.dto.Genre;
-import com.sandy.mymovies.models.dto.Tag;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Movie implements Serializable {
 
   @Id
@@ -40,26 +38,27 @@ public class Movie implements Serializable {
   @Column
   private String description;
 
-  @Column
-  @ManyToOne
-  private Genre genre;
+//  @Column
+//  @ManyToOne
+//  private Genres genres;
+//
+//  @Column
+//  @ManyToOne
+//  private Tag tags;
 
-  @Column
-  @ManyToOne
-  private Tag tag;
+  public enum Index {
+    TAG("tag"),
+    ACTOR("actor"),
+    GENRE("genre"),
+    DIRECTOR("director"),
+    RATING("rating"),
+    TITLE("title"),
+    YEAR("year");
 
-  @Column
-  private Cast cast;
+    private String value;
 
-  public Movie(String imdbid, String title, String releaseYear,String duration,
-      String rating, String director, String imageUrl, String description) {
-    this.imdbid = imdbid;
-    this.title = title;
-    this.releaseYear = releaseYear;
-    this.duration = duration;;
-    this.rating = rating;
-    this.director = director;
-    this.imageUrl = imageUrl;
-    this.description = description;
+    private Index(String value) {
+      this.value = value;
+    }
   }
 }

@@ -38,5 +38,5 @@ public class Episode implements Serializable {
     this.title = title;
     this.description = description;
   }
-  // @todo - consider compound key? imdbId, season, episode number
+  // @todo - consider compound key? imdbid, season, episode number
 }
